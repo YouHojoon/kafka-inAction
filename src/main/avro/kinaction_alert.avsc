@@ -1,7 +1,8 @@
 {
   "type": "record",
   "name": "Alert",
-  "fields": [{
+  "fields": [
+    {
     "name": "sensor_id",
     "type": "long",
     "doc": "The unique id that id"
@@ -17,12 +18,10 @@
         "type": "enum",
         "name": "AlertStatus",
         "symbols": [
-          "Critical",
-          "Major",
-          "Minor",
-          "Warning"
+          "CRITICAL",
+          "MAJOR",
+          "MINOR",
+          "WARNING"
         ]
-      },
-    }
-  ]
+      }}]
 }

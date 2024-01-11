@@ -12,9 +12,12 @@ class HelloWorldConsumer(
 ) {
     private val properties: Properties = Properties()
     init {
-        properties.put("bootstrap.servers", arrayOf("localhost:9094"))
+        properties.put("bootstrap.servers", "localhost:9094")
+        properties.put("group.id","kinaction_helloconsumer")
+        properties.put("enable.auto.commit","true")
+        properties.put("auto.commit.interval.ms", "1000")
         properties.put("key.deserializer","org.apache.kafka.common.serialization.LongDeserializer")
-        properties.put("value.deserializer","io.confluent.kafka.KafkaAvroDeserializer")
+        properties.put("value.deserializer","io.confluent.kafka.serializers.KafkaAvroDeserializer")
         properties.put("schema.registry.url","http://localhost:8081")
     }
     public fun consume(){
@@ -39,8 +42,10 @@ class HelloWorldConsumer(
 }
 
 fun main(){
+    val consumer = HelloWorldConsumer()
+
     val properties = Properties()
-    properties.put("bootstrap.servers", arrayOf("localhost:9092","localhost:9093","localhost:9094"))
+    properties.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094")
     properties.put("key.serializer","org.apache.kafka.common.serialization.LongSerializer")
     properties.put("value.serializer","io.confluent.kafka.serializers.KafkaAvroSerializer")
     properties.put("schema.registry.url","http://localhost:8081")
@@ -54,4 +59,5 @@ fun main(){
     }
 
     println(properties.toString())
+    consumer.consume()
 }
