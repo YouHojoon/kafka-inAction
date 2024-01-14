@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "Alert",
+  "name": "AlertGen",
   "fields": [
     {
     "name": "sensor_id",

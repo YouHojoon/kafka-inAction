@@ -42,22 +42,12 @@ class HelloWorldConsumer(
 }
 
 fun main(){
-    val consumer = HelloWorldConsumer()
+    val consumer = AuditConsumer()
+    val producer = AuditProducer()
 
-    val properties = Properties()
-    properties.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094")
-    properties.put("key.serializer","org.apache.kafka.common.serialization.LongSerializer")
-    properties.put("value.serializer","io.confluent.kafka.serializers.KafkaAvroSerializer")
-    properties.put("schema.registry.url","http://localhost:8081")
+    val thread = Thread(consumer)
+    thread.start()
+    thread.join()
 
-    KafkaProducer<Long,Alert>(properties).use {producer ->
-        val alert = Alert(12345L, Instant.now().toEpochMilli(), AlertStatus.CRITICAL)
-        println("kinaction_info Alert")
-        ProducerRecord("kinaction_schematest", alert.sensorId, alert).also {
-            producer.send(it)
-        }
-    }
-
-    println(properties.toString())
-    consumer.consume()
+    producer.produce()
 }

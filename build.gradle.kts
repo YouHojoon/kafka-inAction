@@ -48,9 +48,9 @@ tasks.withType(JavaCompile::class).configureEach {
     options.encoding = "UTF-8"
 }
 
-tasks {
-    register("generateAvro", GenerateAvroJavaTask::class){
-        source("src/avro")
-        setOutputDir(file("src/main/avro"))
-    }
-}
+//tasks {
+//    register("generateAvro", GenerateAvroJavaTask::class){
+//        source("src/avro")
+//        setOutputDir(file("src/main/avro"))
+//    }
+//}
