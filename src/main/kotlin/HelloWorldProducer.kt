@@ -42,12 +42,12 @@ class HelloWorldConsumer(
 }
 
 fun main(){
-    val consumer = AuditConsumer()
-    val producer = AuditProducer()
-
+    val consumer = AlertConsumer()
+    val producer = AlertProducer()
+    producer.produce()
     val thread = Thread(consumer)
     thread.start()
     thread.join()
 
-    producer.produce()
+
 }

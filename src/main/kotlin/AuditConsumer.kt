@@ -32,7 +32,7 @@ class AuditConsumer: Runnable {
                     val offsetAndMetadata = OffsetAndMetadata(record.offset() + 1, "")
                     val offsetMap = HashMap<TopicPartition, OffsetAndMetadata>()
                     offsetMap.put(TopicPartition("kinaction_audit", record.partition()), offsetAndMetadata)
-                    println("kinaction_audit consumer : offset = ${record.offset()} key = ${record.key()} value = ${record.value()}")
+                    println("kinaction_audit consugmer : offset = ${record.offset()} key = ${record.key()} value = ${record.value()}")
                     consumer.commitSync(offsetMap)
                 }
             }

@@ -11,11 +11,11 @@ class AlertSerde:
     }
 
     override fun close() {
-        return
+        super<Serializer>.close()
     }
 
     override fun configure(configs: MutableMap<String, *>?, isKey: Boolean) {
-        return
+        super<Serializer>.configure(configs, isKey)
     }
 
     override fun deserialize(topic: String?, data: ByteArray?): Alert? {
